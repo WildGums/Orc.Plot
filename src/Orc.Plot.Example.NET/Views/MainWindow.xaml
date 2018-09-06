@@ -4,6 +4,8 @@
                   xmlns:catel="http://schemas.catelproject.com"
                   xmlns:orccontrols="http://schemas.wildgums.com/orc/controls"
                   xmlns:orcplot="http://schemas.wildgums.com/orc/plot"
+                  xmlns:localcontrols="clr-namespace:Orc.Plot.Example.Controls"
+                  xmlns:localviews="clr-namespace:Orc.Plot.Example.Views"
                   ShowInTaskbar="True" ResizeMode="CanResize" SizeToContent="Manual" 
                   WindowStartupLocation="Manual" WindowState="Normal"
                   MinWidth="600" MinHeight="400">
@@ -12,9 +14,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -25,11 +26,32 @@
             </TextBlock>
         </Label>
 
-        <GroupBox Header="Settings">
-            <Label Content="This group box will contain settings in the future" />
-        </GroupBox>
+        <orccontrols:TabControl>
+            <TabItem Header="Animations">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-        <orcplot:PlotView Model="{Binding Plot}" />
+                    <TabControl x:Name="tabControl" Grid.Row="0">
+                        <TabItem Header="Linear Bar Series">
+                            <localviews:LinearBarView />
+                        </TabItem>
+
+                        <TabItem Header="Line Series">
+                            <localviews:LineSeriesView />
+                        </TabItem>
+
+                        <TabItem Header="Area Series">
+                            <localviews:AreaSeriesView />
+                        </TabItem>
+                    </TabControl>
+
+                    <localcontrols:AnimationSettingsControl Grid.Row="1" DataContext="{Binding ElementName=tabControl, Path=SelectedItem.Content.ViewModel}" />
+                </Grid>
+            </TabItem>
+        </orccontrols:TabControl>
     </orccontrols:StackGrid>
 
 </catel:DataWindow>

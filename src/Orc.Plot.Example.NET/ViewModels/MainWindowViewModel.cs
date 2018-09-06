@@ -1,11 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainWindowViewModel.cs" company="WildGums">
-//   Copyright (c) 2008 - 2015 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-
-namespace Orc.Plot.Example.ViewModels
+﻿namespace Orc.Plot.Example.ViewModels
 {
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
