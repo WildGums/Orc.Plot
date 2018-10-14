@@ -4,11 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Catel.MVVM;
-    using Orc.Plot.Animations;
-    using OxyPlot;
+    using Animations;
 
-    public abstract class AnimationViewModelBase : ViewModelBase, IAnimatable
+    public abstract class AnimationViewModelBase : PlotViewModelBase, IAnimatable
     {
         protected AnimationViewModelBase()
         {
@@ -27,13 +25,9 @@
             AnimationFrameDuration = AnimationExtensions.DefaultAnimationFrameDuration;
             HorizontalPercentage = 70;
             VerticalPercentage = 30;
-
-            PlotModel = new PlotModel();
         }
 
         public abstract bool SupportsEasingFunction { get; }
-
-        public PlotModel PlotModel { get; private set; }
 
         public List<Type> EasingFunctions { get; private set; }
 

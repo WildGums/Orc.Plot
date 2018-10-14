@@ -3,7 +3,6 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:catel="http://schemas.catelproject.com"
                   xmlns:orccontrols="http://schemas.wildgums.com/orc/controls"
-                  xmlns:orcplot="http://schemas.wildgums.com/orc/plot"
                   xmlns:localcontrols="clr-namespace:Orc.Plot.Example.Controls"
                   xmlns:localviews="clr-namespace:Orc.Plot.Example.Views"
                   ShowInTaskbar="True" ResizeMode="CanResize" SizeToContent="Manual" 
@@ -50,6 +49,9 @@
 
                     <localcontrols:AnimationSettingsControl Grid.Row="1" DataContext="{Binding ElementName=tabControl, Path=SelectedItem.Content.ViewModel}" />
                 </Grid>
+            </TabItem>
+            <TabItem Header="Toolbar">
+                <localviews:ToolbarView />
             </TabItem>
         </orccontrols:TabControl>
     </orccontrols:StackGrid>
