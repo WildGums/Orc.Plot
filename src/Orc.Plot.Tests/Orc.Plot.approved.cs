@@ -113,8 +113,18 @@ namespace Orc.Plot.Animations
 }
 namespace Orc.Plot
 {
+    [System.Windows.TemplatePartAttribute(Name="PART_HorizontalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
+    [System.Windows.TemplatePartAttribute(Name="PART_ResetButton", Type=typeof(System.Windows.Controls.Button))]
+    [System.Windows.TemplatePartAttribute(Name="PART_VerticalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
     public class PlotView : OxyPlot.Wpf.PlotView
     {
+        public static readonly System.Windows.DependencyProperty ShowResetButtonProperty;
+        public static readonly System.Windows.DependencyProperty ShowXAxisSliderProperty;
+        public static readonly System.Windows.DependencyProperty ShowYAxisSliderProperty;
         public PlotView() { }
+        public bool ShowResetButton { get; set; }
+        public bool ShowXAxisSlider { get; set; }
+        public bool ShowYAxisSlider { get; set; }
+        public override void OnApplyTemplate() { }
     }
 }
