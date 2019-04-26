@@ -6,6 +6,7 @@
         <Style.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         </Style.Resources>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PlotView}">
@@ -14,10 +15,12 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
+
                         <orccontrols:RangeSlider x:Name="PART_VerticalRangeSlider"
                                                  Grid.Row="0"
                                                  Grid.Column="0"

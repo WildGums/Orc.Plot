@@ -18,11 +18,14 @@
         <orcplot:PlotView Grid.Row="0"
                           Model="{Binding PlotModel}"
                           ShowResetButton="{Binding ElementName=ResetCheckBox,
-                                                    Path=IsChecked}"
+                                                    Path=IsChecked,
+                                                    Mode=TwoWay}"
                           ShowXAxisSlider="{Binding ElementName=HorizontalCheckBox,
-                                                    Path=IsChecked}"
+                                                    Path=IsChecked,
+                                                    Mode=TwoWay}"
                           ShowYAxisSlider="{Binding ElementName=VerticalCheckBox,
-                                                    Path=IsChecked}" />
+                                                    Path=IsChecked,
+                                                    Mode=TwoWay}" />
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
             <CheckBox x:Name="VerticalCheckBox"
