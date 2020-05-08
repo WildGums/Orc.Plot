@@ -1,22 +1,22 @@
-﻿[assembly: System.Resources.NeutralResourcesLanguageAttribute("en-US")]
-[assembly: System.Runtime.Versioning.TargetFrameworkAttribute(".NETFramework,Version=v4.6", FrameworkDisplayName=".NET Framework 4.6")]
-[assembly: System.Windows.Markup.XmlnsDefinitionAttribute("http://schemas.wildgums.com/orc/plot", "Orc.Plot")]
-[assembly: System.Windows.Markup.XmlnsPrefixAttribute("http://schemas.wildgums.com/orc/plot", "orcplot")]
-[assembly: System.Windows.ThemeInfoAttribute(System.Windows.ResourceDictionaryLocation.None, System.Windows.ResourceDictionaryLocation.SourceAssembly)]
-public class static ModuleInitializer
+﻿[assembly: System.Resources.NeutralResourcesLanguage("en-US")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETCoreApp,Version=v3.1", FrameworkDisplayName="")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.wildgums.com/orc/plot", "Orc.Plot")]
+[assembly: System.Windows.Markup.XmlnsPrefix("http://schemas.wildgums.com/orc/plot", "orcplot")]
+[assembly: System.Windows.ThemeInfo(System.Windows.ResourceDictionaryLocation.None, System.Windows.ResourceDictionaryLocation.SourceAssembly)]
+public static class ModuleInitializer
 {
     public static void Initialize() { }
 }
 namespace Orc.Plot.Animations
 {
-    public class static AnimationExtensions
+    public static class AnimationExtensions
     {
         public static int DefaultAnimationDelay { get; set; }
         public static int DefaultAnimationDuration { get; set; }
         public static int DefaultAnimationFrameDuration { get; set; }
         public static System.Threading.Tasks.Task AnimateSeriesAsync(this OxyPlot.PlotModel plotModel, OxyPlot.Series.DataPointSeries series, System.Collections.Generic.List<Orc.Plot.Animations.AnimationFrame> animationFrames) { }
-        public static System.Threading.Tasks.Task AnimateSeriesAsync(this OxyPlot.PlotModel plotModel, OxyPlot.Series.LinearBarSeries series, Orc.Plot.Animations.AnimationSettings settings) { }
         public static System.Threading.Tasks.Task AnimateSeriesAsync(this OxyPlot.PlotModel plotModel, OxyPlot.Series.LineSeries series, Orc.Plot.Animations.AnimationSettings settings) { }
+        public static System.Threading.Tasks.Task AnimateSeriesAsync(this OxyPlot.PlotModel plotModel, OxyPlot.Series.LinearBarSeries series, Orc.Plot.Animations.AnimationSettings settings) { }
         public static Orc.Plot.Animations.AnimationFrame GetFinalAnimationFrame(OxyPlot.Series.DataPointSeries series) { }
     }
     public class AnimationFrame
@@ -25,7 +25,7 @@ namespace Orc.Plot.Animations
         public System.Collections.Generic.List<Orc.Plot.Animations.AnimationPoint> AnimationPoints { get; }
         public System.TimeSpan Duration { get; set; }
     }
-    [System.Diagnostics.DebuggerDisplayAttribute("{X} / {Y} (IsVisible = {IsVisible})")]
+    [System.Diagnostics.DebuggerDisplay("{X} / {Y} (IsVisible = {IsVisible})")]
     public class AnimationPoint
     {
         public AnimationPoint() { }
@@ -41,7 +41,7 @@ namespace Orc.Plot.Animations
         public Orc.Plot.Animations.IEasingFunction EasingFunction { get; set; }
         public System.TimeSpan FrameDuration { get; set; }
         public double HorizontalPercentage { get; set; }
-        public System.Nullable<double> MinimumValue { get; set; }
+        public double? MinimumValue { get; set; }
         public double VerticalPercentage { get; set; }
     }
     public class BackEase : Orc.Plot.Animations.IEasingFunction
@@ -113,9 +113,9 @@ namespace Orc.Plot.Animations
 }
 namespace Orc.Plot
 {
-    [System.Windows.TemplatePartAttribute(Name="PART_HorizontalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
-    [System.Windows.TemplatePartAttribute(Name="PART_ResetButton", Type=typeof(System.Windows.Controls.Button))]
-    [System.Windows.TemplatePartAttribute(Name="PART_VerticalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
+    [System.Windows.TemplatePart(Name="PART_HorizontalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
+    [System.Windows.TemplatePart(Name="PART_ResetButton", Type=typeof(System.Windows.Controls.Button))]
+    [System.Windows.TemplatePart(Name="PART_VerticalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
     public class PlotView : OxyPlot.Wpf.PlotView
     {
         public static readonly System.Windows.DependencyProperty ShowResetButtonProperty;

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
-    <AssemblyName>Orc.Plot.Example.NET</AssemblyName>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <AssemblyName>Orc.Plot.Example</AssemblyName>
     <RootNamespace>Orc.Plot.Example</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <SonarQubeExclude>true</SonarQubeExclude>
@@ -30,7 +30,6 @@
     <PackageReference Include="WpfAnalyzers" Version="2.4.5" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    
   </ItemGroup>
 
   <ItemGroup>
@@ -41,25 +40,5 @@
     <ProjectReference Include="..\Orc.Plot\Orc.Plot.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  
   <Import Project="$(MSBuildProjectDirectory)\..\Directory.build.shared.props" Condition="Exists('$(MSBuildProjectDirectory)\..\Directory.build.shared.props')" />
 </Project>
