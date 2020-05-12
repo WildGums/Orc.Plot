@@ -5,6 +5,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
+    using Catel.Logging;
     using Controls;
     using OxyPlot;
     using OxyPlot.Axes;
@@ -14,6 +15,8 @@
     [TemplatePart(Name = VerticalRangeSliderName, Type = typeof(RangeSlider))]
     public class PlotView : OxyPlot.Wpf.PlotView
     {
+        private static readonly ILog Log = LogManager.GetCurrentClassLogger();
+
         private const string ResetButtonName = "PART_ResetButton";
         private const string HorizontalRangeSliderName = "PART_HorizontalRangeSlider";
         private const string VerticalRangeSliderName = "PART_VerticalRangeSlider";
@@ -70,14 +73,14 @@
                 newModel.Updated += ModelOnUpdated;
             }
 
-            UpdateSliders();
+            _ = Dispatcher.BeginInvoke(new Action(() => UpdateSliders()));
 
             void ModelOnUpdated(object sender, EventArgs args) => UpdateSliders();
         }
 
         private void UpdateSliders()
         {
-            if (ActualModel == null)
+            if (ActualModel is null)
             {
                 return;
             }
@@ -182,12 +185,18 @@
                         _rangeSlider.SetCurrentValue(IsEnabledProperty, false);
                     }
 
-                    void UpdateBounds()
+                    bool UpdateBounds()
                     {
                         var minimum = Axis.Minimum;
                         if (double.IsNaN(minimum))
                         {
                             minimum = (double)typeof(Axis).GetMethod("CalculateActualMinimum", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(Axis, null);
+                        }
+
+                        if (double.IsNaN(minimum))
+                        {
+                            Log.Debug($"Can't update minimum, no value available (yet)");
+                            return false;
                         }
 
                         var maximum = Axis.Maximum;
@@ -196,8 +205,16 @@
                             maximum = (double)typeof(Axis).GetMethod("CalculateActualMaximum", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(Axis, null);
                         }
 
+                        if (double.IsNaN(maximum))
+                        {
+                            Log.Debug($"Can't update maximum, no value available (yet)");
+                            return false;
+                        }
+
                         _rangeSlider.SetCurrentValue(RangeBase.MinimumProperty, minimum);
                         _rangeSlider.SetCurrentValue(RangeBase.MaximumProperty, maximum);
+
+                        return true;
                     }
 
                     void OnAxisChanged(object o, AxisChangedEventArgs eventArgs)

@@ -15,6 +15,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        
         <orcplot:PlotView Grid.Row="0"
                           Model="{Binding PlotModel}"
                           ShowResetButton="{Binding ElementName=ResetCheckBox,
