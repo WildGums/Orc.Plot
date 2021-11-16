@@ -6,6 +6,7 @@
     using Catel.MVVM;
     using OxyPlot;
     using OxyPlot.Axes;
+    using OxyPlot.Legends;
     using OxyPlot.Series;
 
     public class MainWindowViewModel : ViewModelBase
@@ -52,10 +53,14 @@
             var plotModel = new PlotModel
             {
                 Title = "Column series",
+            };
+
+            plotModel.Legends.Add(new Legend
+            {
                 LegendPlacement = LegendPlacement.Outside,
                 LegendPosition = LegendPosition.RightTop,
                 LegendOrientation = LegendOrientation.Vertical
-            };
+            });
 
             // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
             plotModel.Axes.Add(new CategoryAxis
@@ -72,21 +77,21 @@
             });
 
             // Add the series, note that the BarSeries are using the same ItemsSource as the CategoryAxis.
-            plotModel.Series.Add(new ColumnSeries
+            plotModel.Series.Add(new BarSeries
             {
                 Title = "2009",
                 ItemsSource = items,
                 ValueField = "Value1"
             });
 
-            plotModel.Series.Add(new ColumnSeries
+            plotModel.Series.Add(new BarSeries
             {
                 Title = "2010",
                 ItemsSource = items,
                 ValueField = "Value2"
             });
 
-            plotModel.Series.Add(new ColumnSeries
+            plotModel.Series.Add(new BarSeries
             {
                 Title = "2011",
                 ItemsSource = items,

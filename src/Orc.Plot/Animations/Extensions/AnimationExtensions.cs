@@ -65,7 +65,7 @@
             var points = new List<IAnimatablePoint>();
 
             var itemsSource = series.ItemsSource;
-            if (itemsSource != null)
+            if (itemsSource is not null)
             {
                 points.AddRange(from x in itemsSource.Cast<object>()
                                 where x is IAnimatablePoint

@@ -13,7 +13,7 @@
         private async void OnAnimateClick(object sender, RoutedEventArgs e)
         {
             var animatable = DataContext as IAnimatable;
-            if (animatable != null)
+            if (animatable is not null)
             {
                 await animatable.AnimateAsync();
             }

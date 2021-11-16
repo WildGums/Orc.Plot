@@ -63,14 +63,18 @@
 
         private void OnModelChanged(PlotModel oldModel, PlotModel newModel)
         {
-            if (oldModel != null)
+            if (oldModel is not null)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 oldModel.Updated -= ModelOnUpdated;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
-            if (newModel != null)
+            if (newModel is not null)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 newModel.Updated += ModelOnUpdated;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             _ = Dispatcher.BeginInvoke(new Action(() => UpdateSliders()));
@@ -85,12 +89,12 @@
                 return;
             }
 
-            if (_horizontalSliderAxisSynchronizer != null)
+            if (_horizontalSliderAxisSynchronizer is not null)
             {
                 _horizontalSliderAxisSynchronizer.Axis = ActualModel.DefaultXAxis;
             }
 
-            if (_verticalSliderAxisSynchronizer != null)
+            if (_verticalSliderAxisSynchronizer is not null)
             {
                 _verticalSliderAxisSynchronizer.Axis = ActualModel.DefaultYAxis;
             }
@@ -107,14 +111,14 @@
         {
             base.OnApplyTemplate();
 
-            if (_resetButton != null)
+            if (_resetButton is not null)
             {
                 _resetButton.Click -= ResetButtonOnClick;
             }
 
             _resetButton = GetTemplateChild(ResetButtonName) as Button;
 
-            if (_resetButton != null)
+            if (_resetButton is not null)
             {
                 _resetButton.Click += ResetButtonOnClick;
             }
@@ -166,17 +170,22 @@
                         return;
                     }
 
-                    if (_axis != null)
+                    if (_axis is not null)
                     {
+#pragma warning disable CS0618 // Type or member is obsolete
                         _axis.AxisChanged -= OnAxisChanged;
+#pragma warning restore CS0618 // Type or member is obsolete
                     }
 
                     _axis = value;
 
-                    if (_axis != null)
+                    if (_axis is not null)
                     {
                         _rangeSlider.SetCurrentValue(IsEnabledProperty, true);
+#pragma warning disable CS0618 // Type or member is obsolete
                         _axis.AxisChanged += OnAxisChanged;
+#pragma warning restore CS0618 // Type or member is obsolete
+
                         UpdateBounds();
                         UpdateValues();
                     }
@@ -245,7 +254,7 @@
 
             private void HandleSlide(object sender, EventArgs args)
             {
-                if (_ignoreSlide || Axis?.PlotModel == null)
+                if (_ignoreSlide || Axis?.PlotModel is null)
                 {
                     return;
                 }

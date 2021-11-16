@@ -14,7 +14,7 @@
         {
             var plotModel = PlotModel;
             var series = plotModel.Series.First() as LinearBarSeries;
-            if (series != null)
+            if (series is not null)
             {
                 await plotModel.AnimateSeriesAsync(series, animationSettings);
             }
