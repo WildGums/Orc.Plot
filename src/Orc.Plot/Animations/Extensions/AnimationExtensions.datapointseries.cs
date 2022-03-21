@@ -75,7 +75,7 @@
                     for (var j = 0; j < points.Count; j++)
                     {
                         var animatablePoint = points[j];
-                        if (animatablePoint != null)
+                        if (animatablePoint is not null)
                         {
                             if (j < animationPoints.Count)
                             {

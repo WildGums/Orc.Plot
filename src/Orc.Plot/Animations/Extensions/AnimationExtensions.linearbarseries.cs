@@ -28,7 +28,7 @@
             }
 
             var easingFunction = settings.EasingFunction;
-            if (easingFunction == null)
+            if (easingFunction is null)
             {
                 easingFunction = DefaultEasingFunction;
             }
@@ -69,7 +69,7 @@
                 minimumValue = 0d;
 
                 var defaultYAxis = plotModel.DefaultYAxis;
-                if (defaultYAxis != null)
+                if (defaultYAxis is not null)
                 {
                     if (defaultYAxis.Minimum > 0d)
                     {
