@@ -11,22 +11,15 @@
 
     public class MainWindowViewModel : ViewModelBase
     {
-        #region Fields
         private static readonly ILog Log = LogManager.GetCurrentClassLogger();
-        #endregion
 
-        #region Constructors
         public MainWindowViewModel()
         {
             Title = "Orc.Plot example";
         }
-        #endregion
 
-        #region Properties
         public PlotModel Plot { get; private set; }
-        #endregion
 
-        #region Methods
         protected override async Task InitializeAsync()
         {
             await base.InitializeAsync();
@@ -100,6 +93,5 @@
 
             Plot = plotModel;
         }
-        #endregion
     }
 }

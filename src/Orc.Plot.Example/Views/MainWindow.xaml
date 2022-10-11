@@ -4,7 +4,8 @@
                   xmlns:catel="http://schemas.catelproject.com"
                   xmlns:orccontrols="http://schemas.wildgums.com/orc/controls"
                   xmlns:localcontrols="clr-namespace:Orc.Plot.Example.Controls"
-                  xmlns:localviews="clr-namespace:Orc.Plot.Example.Views"
+                  xmlns:localviews="clr-namespace:Orc.Plot.Example.Views" 
+                  xmlns:orctheming="http://schemas.wildgums.com/orc/theming"
                   ShowInTaskbar="True" ResizeMode="CanResize" SizeToContent="Manual" 
                   WindowStartupLocation="Manual" WindowState="Normal"
                   MinWidth="600" MinHeight="400">
@@ -16,8 +17,11 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <orctheming:ThemeSwitcherView Grid.ColumnSpan="4" />
 
         <Label Grid.ColumnSpan="4">
             <TextBlock TextWrapping="Wrap">

@@ -10,11 +10,12 @@
 
     public static partial class AnimationExtensions
     {
-        public static async Task AnimateSeriesAsync(
-            this PlotModel plotModel,
-            LinearBarSeries series,
-            AnimationSettings settings)
+        public static async Task AnimateSeriesAsync(this PlotModel plotModel, LinearBarSeries series, AnimationSettings settings)
         {
+            ArgumentNullException.ThrowIfNull(plotModel);
+            ArgumentNullException.ThrowIfNull(series);
+            ArgumentNullException.ThrowIfNull(settings);
+
             var points = series.GetAnimatablePoints();
             if (points.Count == 0)
             {
