@@ -11,6 +11,8 @@
     {
         public static AnimationFrame GetFinalAnimationFrame(DataPointSeries series)
         {
+            ArgumentNullException.ThrowIfNull(series);
+            
             var animationFrame = new AnimationFrame
             {
                 Duration = TimeSpan.Zero
@@ -29,11 +31,12 @@
             return animationFrame;
         }
 
-        public static async Task AnimateSeriesAsync(
-            this PlotModel plotModel,
-            DataPointSeries series,
-            List<AnimationFrame> animationFrames)
+        public static async Task AnimateSeriesAsync(this PlotModel plotModel, DataPointSeries series, List<AnimationFrame> animationFrames)
         {
+            ArgumentNullException.ThrowIfNull(plotModel);
+            ArgumentNullException.ThrowIfNull(series);
+            ArgumentNullException.ThrowIfNull(animationFrames);
+
             if (animationFrames.Count == 0)
             {
                 return;

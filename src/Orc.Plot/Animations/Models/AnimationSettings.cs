@@ -4,11 +4,14 @@
 
     public class AnimationSettings
     {
+        private static readonly IEasingFunction DefaultEasingFunction = new NoEase();
+
         public AnimationSettings()
         {
             HorizontalPercentage = 70;
             VerticalPercentage = 30;
 
+            EasingFunction = DefaultEasingFunction;
             Delay = TimeSpan.FromMilliseconds(AnimationExtensions.DefaultAnimationDelay);
             Duration = TimeSpan.FromMilliseconds(AnimationExtensions.DefaultAnimationDuration);
             FrameDuration = TimeSpan.FromMilliseconds(AnimationExtensions.DefaultAnimationFrameDuration);

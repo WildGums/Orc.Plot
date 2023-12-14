@@ -30,9 +30,9 @@
         /// <summary>Identifies the <see cref="ShowResetButton" /> dependency property.</summary>
         public static readonly DependencyProperty ShowResetButtonProperty = DependencyProperty.Register(nameof(ShowResetButton), typeof(bool), typeof(PlotView), new PropertyMetadata(true));
 
-        private Button _resetButton;
-        private SliderAxisSynchronizer _verticalSliderAxisSynchronizer;
-        private SliderAxisSynchronizer _horizontalSliderAxisSynchronizer;
+        private Button? _resetButton;
+        private SliderAxisSynchronizer? _verticalSliderAxisSynchronizer;
+        private SliderAxisSynchronizer? _horizontalSliderAxisSynchronizer;
 
         static PlotView()
         {
@@ -61,7 +61,7 @@
             set => SetValue(ShowXAxisSliderProperty, value);
         }
 
-        private void OnModelChanged(PlotModel oldModel, PlotModel newModel)
+        private void OnModelChanged(PlotModel? oldModel, PlotModel? newModel)
         {
             if (oldModel is not null)
             {
@@ -79,7 +79,7 @@
 
             _ = Dispatcher.BeginInvoke(new Action(() => UpdateSliders()));
 
-            void ModelOnUpdated(object sender, EventArgs args) => UpdateSliders();
+            void ModelOnUpdated(object? sender, EventArgs args) => UpdateSliders();
         }
 
         private void UpdateSliders()
@@ -145,22 +145,24 @@
             }
         }
 
-        private void ResetButtonOnClick(object sender, RoutedEventArgs e) => ResetAllAxes();
+        private void ResetButtonOnClick(object? sender, RoutedEventArgs e) => ResetAllAxes();
 
         private class SliderAxisSynchronizer
         {
             private readonly RangeSlider _rangeSlider;
-            private Axis _axis;
+            private Axis? _axis;
             private bool _ignoreSlide;
 
             public SliderAxisSynchronizer(RangeSlider rangeSlider)
             {
+                ArgumentNullException.ThrowIfNull(rangeSlider);
+
                 _rangeSlider = rangeSlider;
                 _rangeSlider.LowerValueChanged += HandleSlide;
                 _rangeSlider.UpperValueChanged += HandleSlide;
             }
 
-            public Axis Axis
+            public Axis? Axis
             {
                 get => _axis;
                 set
@@ -196,10 +198,20 @@
 
                     bool UpdateBounds()
                     {
-                        var minimum = Axis.Minimum;
+                        var axis = Axis;
+                        if (axis is null)
+                        {
+                            return false;
+                        }
+
+                        var minimum = axis.Minimum;
                         if (double.IsNaN(minimum))
                         {
-                            minimum = (double)typeof(Axis).GetMethod("CalculateActualMinimum", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(Axis, null);
+                            var methodInfo = typeof(Axis).GetMethod("CalculateActualMinimum", BindingFlags.Instance | BindingFlags.NonPublic);
+                            if (methodInfo is not null)
+                            {
+                                minimum = (double?)methodInfo.Invoke(Axis, null) ?? minimum;
+                            }
                         }
 
                         if (double.IsNaN(minimum))
@@ -208,10 +220,14 @@
                             return false;
                         }
 
-                        var maximum = Axis.Maximum;
+                        var maximum = axis.Maximum;
                         if (double.IsNaN(maximum))
                         {
-                            maximum = (double)typeof(Axis).GetMethod("CalculateActualMaximum", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(Axis, null);
+                            var methodInfo = typeof(Axis).GetMethod("CalculateActualMaximum", BindingFlags.Instance | BindingFlags.NonPublic);
+                            if (methodInfo is not null)
+                            {
+                                maximum = (double?)methodInfo.Invoke(Axis, null) ?? maximum;
+                            }
                         }
 
                         if (double.IsNaN(maximum))
@@ -226,7 +242,7 @@
                         return true;
                     }
 
-                    void OnAxisChanged(object o, AxisChangedEventArgs eventArgs)
+                    void OnAxisChanged(object? o, AxisChangedEventArgs eventArgs)
                     {
                         if (eventArgs.ChangeType == AxisChangeTypes.Reset)
                         {
@@ -238,9 +254,15 @@
 
                     void UpdateValues()
                     {
+                        var axis = Axis;
+                        if (axis is null)
+                        {
+                            return;
+                        }
+
                         _ignoreSlide = true;
-                        _rangeSlider.SetCurrentValue(RangeSlider.LowerValueProperty, Axis.ActualMinimum);
-                        _rangeSlider.SetCurrentValue(RangeSlider.UpperValueProperty, Axis.ActualMaximum);
+                        _rangeSlider.SetCurrentValue(RangeSlider.LowerValueProperty, axis.ActualMinimum);
+                        _rangeSlider.SetCurrentValue(RangeSlider.UpperValueProperty, axis.ActualMaximum);
                         _ignoreSlide = false;
                     }
                 }
@@ -252,7 +274,7 @@
                 _rangeSlider.UpperValueChanged -= HandleSlide;
             }
 
-            private void HandleSlide(object sender, EventArgs args)
+            private void HandleSlide(object? sender, EventArgs args)
             {
                 if (_ignoreSlide || Axis?.PlotModel is null)
                 {

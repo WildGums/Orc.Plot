@@ -16,7 +16,7 @@ public static class ModuleInitializer
 
         // TODO: Register services
 
-        var languageService = serviceLocator.ResolveType<ILanguageService>();
+        var languageService = serviceLocator.ResolveRequiredType<ILanguageService>();
         languageService.RegisterLanguageSource(new LanguageResourceSource("Orc.Plot", "Orc.Plot.Properties", "Resources"));
     }
 }

@@ -25,6 +25,8 @@
 
         private static List<double> CalculateEaseValues(double range, int count, IEasingFunction easingFunction, double baseValue = 0d)
         {
+            ArgumentNullException.ThrowIfNull(easingFunction);
+
             var items = new List<double>();
 
             var easePhase = 1d / count;
@@ -42,6 +44,8 @@
 
         private static void InsertDelayAnimationFrame(this List<AnimationFrame> animationFrames, TimeSpan delay)
         {
+            ArgumentNullException.ThrowIfNull(animationFrames);
+
             if (animationFrames.Count < 2)
             {
                 return;
@@ -62,6 +66,8 @@
 
         private static List<IAnimatablePoint> GetAnimatablePoints(this DataPointSeries series)
         {
+            ArgumentNullException.ThrowIfNull(series);
+            
             var points = new List<IAnimatablePoint>();
 
             var itemsSource = series.ItemsSource;
