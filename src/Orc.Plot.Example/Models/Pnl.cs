@@ -8,6 +8,8 @@
     [DebuggerDisplay("X: {X} => {FinalX} | Y: {Y} => {FinalY}")]
     public class Pnl : IAnimatablePoint
     {
+        private static readonly TimeSpan TimeSpan = TimeSpan.FromMilliseconds(1);
+
         public double FinalX { get; set; }
         public double FinalY { get; set; }
         public double X { get; set; }
@@ -15,7 +17,7 @@
 
         public DateTime Time
         {
-            get { return DateTimeAxis.ToDateTime(X); }
+            get { return DateTimeAxis.ToDateTime(X, TimeSpan); }
             set
             {
                 var finalX = DateTimeAxis.ToDouble(value);
