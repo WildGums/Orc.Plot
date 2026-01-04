@@ -7,6 +7,7 @@
     using System.Windows.Controls.Primitives;
     using Catel.Logging;
     using Controls;
+    using Microsoft.Extensions.Logging;
     using OxyPlot;
     using OxyPlot.Axes;
 
@@ -15,7 +16,7 @@
     [TemplatePart(Name = VerticalRangeSliderName, Type = typeof(RangeSlider))]
     public class PlotView : OxyPlot.Wpf.PlotView
     {
-        private static readonly ILog Log = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger Logger = LogManager.GetLogger(typeof(PlotView));
 
         private const string ResetButtonName = "PART_ResetButton";
         private const string HorizontalRangeSliderName = "PART_HorizontalRangeSlider";
@@ -216,7 +217,7 @@
 
                         if (double.IsNaN(minimum))
                         {
-                            Log.Debug($"Can't update minimum, no value available (yet)");
+                            Logger.LogDebug($"Can't update minimum, no value available (yet)");
                             return false;
                         }
 
@@ -232,7 +233,7 @@
 
                         if (double.IsNaN(maximum))
                         {
-                            Log.Debug($"Can't update maximum, no value available (yet)");
+                            Logger.LogDebug($"Can't update maximum, no value available (yet)");
                             return false;
                         }
 

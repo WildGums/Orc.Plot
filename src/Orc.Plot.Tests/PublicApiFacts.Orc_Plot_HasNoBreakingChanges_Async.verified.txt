@@ -114,6 +114,10 @@ namespace Orc.Plot.Animations
 }
 namespace Orc.Plot
 {
+    public static class OrcPlotModule
+    {
+        public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddOrcPlot(this Microsoft.Extensions.DependencyInjection.IServiceCollection serviceCollection) { }
+    }
     [System.Windows.TemplatePart(Name="PART_HorizontalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
     [System.Windows.TemplatePart(Name="PART_ResetButton", Type=typeof(System.Windows.Controls.Button))]
     [System.Windows.TemplatePart(Name="PART_VerticalRangeSlider", Type=typeof(Orc.Controls.RangeSlider))]
