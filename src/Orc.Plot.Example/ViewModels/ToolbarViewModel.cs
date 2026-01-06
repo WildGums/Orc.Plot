@@ -1,10 +1,17 @@
 ﻿namespace Orc.Plot.Example.ViewModels
 {
+    using System;
     using OxyPlot;
     using OxyPlot.Series;
 
     public class ToolbarViewModel : PlotViewModelBase
     {
+        public ToolbarViewModel(IServiceProvider serviceProvider)
+            : base(serviceProvider)
+        {
+            
+        }
+
         protected override ItemsSeries GetPlotSeries()
         {
             return new LinearBarSeries

@@ -1,9 +1,11 @@
 ﻿namespace Orc.Plot.Example.ViewModels
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using Catel.Logging;
     using Catel.MVVM;
+    using Microsoft.Extensions.Logging;
     using OxyPlot;
     using OxyPlot.Axes;
     using OxyPlot.Legends;
@@ -11,9 +13,8 @@
 
     public class MainWindowViewModel : ViewModelBase
     {
-        private static readonly ILog Log = LogManager.GetCurrentClassLogger();
-
-        public MainWindowViewModel()
+        public MainWindowViewModel(IServiceProvider serviceProvider)
+            : base(serviceProvider)
         {
             Title = "Orc.Plot example";
         }
@@ -37,9 +38,27 @@
             // Create some data
             var items = new Collection<Item>
             {
-                new Item {Label = "Apples", Value1 = 37, Value2 = 12, Value3 = 19},
-                new Item {Label = "Pears", Value1 = 7, Value2 = 21, Value3 = 9},
-                new Item {Label = "Bananas", Value1 = 23, Value2 = 2, Value3 = 29}
+                new Item
+                {
+                    Label = "Apples",
+                    Value1 = 37,
+                    Value2 = 12,
+                    Value3 = 19
+                },
+                new Item
+                {
+                    Label = "Pears",
+                    Value1 = 7,
+                    Value2 = 21,
+                    Value3 = 9
+                },
+                new Item
+                {
+                    Label = "Bananas",
+                    Value1 = 23,
+                    Value2 = 2,
+                    Value3 = 29
+                }
             };
 
             // Create the plot model

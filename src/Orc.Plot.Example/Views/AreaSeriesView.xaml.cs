@@ -2,9 +2,6 @@
 {
     public partial class AreaSeriesView
     {
-        public AreaSeriesView()
-        {
-            InitializeComponent();
-        }
+
     }
 }

@@ -1,17 +1,19 @@
 ﻿namespace Orc.Plot.Example.ViewModels
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Orc.Plot.Animations;
     using OxyPlot;
-    using OxyPlot.Annotations;
-    using OxyPlot.Axes;
     using OxyPlot.Series;
 
     public class AreaSeriesViewModel : AnimationViewModelBase
     {
+        public AreaSeriesViewModel(IServiceProvider serviceProvider) 
+            : base(serviceProvider)
+        {
+        }
+
         public override bool SupportsEasingFunction { get { return true; } }
 
         public override async Task AnimateAsync(AnimationSettings animationSettings)

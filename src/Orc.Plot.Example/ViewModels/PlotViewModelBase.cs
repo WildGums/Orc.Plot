@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Orc.Plot.Example.ViewModels
+﻿namespace Orc.Plot.Example.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     using Catel.MVVM;
     using OxyPlot;
     using OxyPlot.Annotations;
@@ -14,9 +13,10 @@ namespace Orc.Plot.Example.ViewModels
 
     public abstract class PlotViewModelBase : ViewModelBase
     {
-        public PlotModel PlotModel { get;}
+        public PlotModel PlotModel { get; }
 
-        public PlotViewModelBase()
+        public PlotViewModelBase(IServiceProvider serviceProvider)
+            : base(serviceProvider)
         {
             PlotModel = new PlotModel();
         }

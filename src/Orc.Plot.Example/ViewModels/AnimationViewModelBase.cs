@@ -8,7 +8,8 @@
 
     public abstract class AnimationViewModelBase : PlotViewModelBase, IAnimatable
     {
-        protected AnimationViewModelBase()
+        protected AnimationViewModelBase(IServiceProvider serviceProvider)
+            : base(serviceProvider)
         {
             EasingFunctions = (from type in typeof(CircleEase).Assembly.GetTypes()
                                where type.GetInterfaces().Any(x => x == typeof(IEasingFunction)) && !type.IsAbstract

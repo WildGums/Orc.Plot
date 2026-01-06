@@ -1,5 +1,6 @@
 ﻿namespace Orc.Plot.Example.ViewModels
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Animations;
@@ -8,6 +9,11 @@
 
     public class LineSeriesViewModel : AnimationViewModelBase
     {
+        public LineSeriesViewModel(IServiceProvider serviceProvider) 
+            : base(serviceProvider)
+        {
+        }
+
         public override bool SupportsEasingFunction { get { return true; } }
 
         public override async Task AnimateAsync(AnimationSettings animationSettings)
