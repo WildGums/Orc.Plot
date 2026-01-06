@@ -1,4 +1,4 @@
-﻿namespace Orc.Plot
+﻿namespace Orc
 {
     using Catel.Services;
     using Catel.ThirdPartyNotices;
