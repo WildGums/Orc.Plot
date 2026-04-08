@@ -1,116 +1,115 @@
-﻿namespace Orc.Plot.Example.ViewModels
+﻿namespace Orc.Plot.Example.ViewModels;
+
+using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Catel.Logging;
+using Catel.MVVM;
+using Microsoft.Extensions.Logging;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Legends;
+using OxyPlot.Series;
+
+public class MainWindowViewModel : ViewModelBase
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
-    using Catel.Logging;
-    using Catel.MVVM;
-    using Microsoft.Extensions.Logging;
-    using OxyPlot;
-    using OxyPlot.Axes;
-    using OxyPlot.Legends;
-    using OxyPlot.Series;
-
-    public class MainWindowViewModel : ViewModelBase
+    public MainWindowViewModel(IServiceProvider serviceProvider)
+        : base(serviceProvider)
     {
-        public MainWindowViewModel(IServiceProvider serviceProvider)
-            : base(serviceProvider)
+        Title = "Orc.Plot example";
+    }
+
+    public PlotModel Plot { get; private set; }
+
+    protected override async Task InitializeAsync()
+    {
+        await base.InitializeAsync();
+
+        UpdatePlot();
+    }
+
+    protected override async Task CloseAsync()
+    {
+        await base.CloseAsync();
+    }
+
+    private void UpdatePlot()
+    {
+        // Create some data
+        var items = new Collection<Item>
         {
-            Title = "Orc.Plot example";
-        }
+            new Item
+            {
+                Label = "Apples",
+                Value1 = 37,
+                Value2 = 12,
+                Value3 = 19
+            },
+            new Item
+            {
+                Label = "Pears",
+                Value1 = 7,
+                Value2 = 21,
+                Value3 = 9
+            },
+            new Item
+            {
+                Label = "Bananas",
+                Value1 = 23,
+                Value2 = 2,
+                Value3 = 29
+            }
+        };
 
-        public PlotModel Plot { get; private set; }
-
-        protected override async Task InitializeAsync()
+        // Create the plot model
+        var plotModel = new PlotModel
         {
-            await base.InitializeAsync();
+            Title = "Column series",
+        };
 
-            UpdatePlot();
-        }
-
-        protected override async Task CloseAsync()
+        plotModel.Legends.Add(new Legend
         {
-            await base.CloseAsync();
-        }
+            LegendPlacement = LegendPlacement.Outside,
+            LegendPosition = LegendPosition.RightTop,
+            LegendOrientation = LegendOrientation.Vertical
+        });
 
-        private void UpdatePlot()
+        // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
+        plotModel.Axes.Add(new CategoryAxis
         {
-            // Create some data
-            var items = new Collection<Item>
-            {
-                new Item
-                {
-                    Label = "Apples",
-                    Value1 = 37,
-                    Value2 = 12,
-                    Value3 = 19
-                },
-                new Item
-                {
-                    Label = "Pears",
-                    Value1 = 7,
-                    Value2 = 21,
-                    Value3 = 9
-                },
-                new Item
-                {
-                    Label = "Bananas",
-                    Value1 = 23,
-                    Value2 = 2,
-                    Value3 = 29
-                }
-            };
+            ItemsSource = items,
+            LabelField = "Label"
+        });
 
-            // Create the plot model
-            var plotModel = new PlotModel
-            {
-                Title = "Column series",
-            };
+        plotModel.Axes.Add(new LinearAxis
+        {
+            Position = AxisPosition.Left,
+            MinimumPadding = 0,
+            AbsoluteMinimum = 0
+        });
 
-            plotModel.Legends.Add(new Legend
-            {
-                LegendPlacement = LegendPlacement.Outside,
-                LegendPosition = LegendPosition.RightTop,
-                LegendOrientation = LegendOrientation.Vertical
-            });
+        // Add the series, note that the BarSeries are using the same ItemsSource as the CategoryAxis.
+        plotModel.Series.Add(new BarSeries
+        {
+            Title = "2009",
+            ItemsSource = items,
+            ValueField = "Value1"
+        });
 
-            // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
-            plotModel.Axes.Add(new CategoryAxis
-            {
-                ItemsSource = items,
-                LabelField = "Label"
-            });
+        plotModel.Series.Add(new BarSeries
+        {
+            Title = "2010",
+            ItemsSource = items,
+            ValueField = "Value2"
+        });
 
-            plotModel.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                MinimumPadding = 0,
-                AbsoluteMinimum = 0
-            });
+        plotModel.Series.Add(new BarSeries
+        {
+            Title = "2011",
+            ItemsSource = items,
+            ValueField = "Value3"
+        });
 
-            // Add the series, note that the BarSeries are using the same ItemsSource as the CategoryAxis.
-            plotModel.Series.Add(new BarSeries
-            {
-                Title = "2009",
-                ItemsSource = items,
-                ValueField = "Value1"
-            });
-
-            plotModel.Series.Add(new BarSeries
-            {
-                Title = "2010",
-                ItemsSource = items,
-                ValueField = "Value2"
-            });
-
-            plotModel.Series.Add(new BarSeries
-            {
-                Title = "2011",
-                ItemsSource = items,
-                ValueField = "Value3"
-            });
-
-            Plot = plotModel;
-        }
+        Plot = plotModel;
     }
 }

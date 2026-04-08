@@ -1,6 +1,5 @@
-﻿namespace Orc.Plot.Example.Views
+﻿namespace Orc.Plot.Example.Views;
+
+public partial class ToolbarView
 {
-    public partial class ToolbarView
-    {
-    }
 }

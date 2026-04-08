@@ -1,12 +1,11 @@
-﻿namespace Orc.Plot.Animations
-{
-    using System;
+﻿namespace Orc.Plot.Animations;
 
-    public class SineEase : IEasingFunction
+using System;
+
+public class SineEase : IEasingFunction
+{
+    public double Ease(double value)
     {
-        public double Ease(double value)
-        {
-            return 1.0 - Math.Sin(Math.PI / 2.0 * (1.0 - value));
-        }
+        return 1.0 - Math.Sin(Math.PI / 2.0 * (1.0 - value));
     }
 }
