@@ -1,4 +1,1 @@
-﻿namespace Orc.Plot
-{
-
-}
+﻿namespace Orc.Plot;

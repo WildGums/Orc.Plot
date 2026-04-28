@@ -1,20 +1,19 @@
-﻿namespace Orc.Plot.Animations
+﻿namespace Orc.Plot.Animations;
+
+using System;
+
+public class PowerEase : IEasingFunction
 {
-    using System;
-
-    public class PowerEase : IEasingFunction
+    public PowerEase()
     {
-        public PowerEase()
-        {
-            Power = 2d;
-        }
+        Power = 2d;
+    }
 
-        public double Power { get; set; }
+    public double Power { get; set; }
 
-        public double Ease(double value)
-        {
-            double y = Math.Max(0.0, Power);
-            return Math.Pow(value, y);
-        }
+    public double Ease(double value)
+    {
+        double y = Math.Max(0.0, Power);
+        return Math.Pow(value, y);
     }
 }

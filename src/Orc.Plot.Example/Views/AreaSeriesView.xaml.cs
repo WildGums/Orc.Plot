@@ -1,10 +1,6 @@
-﻿namespace Orc.Plot.Example.Views
+﻿namespace Orc.Plot.Example.Views;
+
+public partial class AreaSeriesView
 {
-    public partial class AreaSeriesView
-    {
-        public AreaSeriesView()
-        {
-            InitializeComponent();
-        }
-    }
+
 }

@@ -1,10 +1,9 @@
-﻿namespace Orc.Plot.Animations
+﻿namespace Orc.Plot.Animations;
+
+public class NoEase : IEasingFunction
 {
-    public class NoEase : IEasingFunction
+    public double Ease(double value)
     {
-        public double Ease(double value)
-        {
-            return 1d;
-        }
+        return 1d;
     }
 }

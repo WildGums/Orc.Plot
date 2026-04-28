@@ -1,13 +1,12 @@
-﻿namespace Orc.Plot.Animations
+﻿namespace Orc.Plot.Animations;
+
+using System;
+using System.Threading.Tasks;
+
+public interface IAnimatable
 {
-    using System;
-    using System.Threading.Tasks;
+    bool SupportsEasingFunction { get; }
 
-    public interface IAnimatable
-    {
-        bool SupportsEasingFunction { get; }
-
-        Task AnimateAsync();
-        Task AnimateAsync(AnimationSettings animationSettings);
-    }
+    Task AnimateAsync();
+    Task AnimateAsync(AnimationSettings animationSettings);
 }

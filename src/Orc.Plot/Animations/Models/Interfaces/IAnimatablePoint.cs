@@ -1,13 +1,12 @@
-﻿namespace Orc.Plot.Animations
+﻿namespace Orc.Plot.Animations;
+
+public interface IAnimatablePoint
 {
-    public interface IAnimatablePoint
-    {
-        double FinalX { get; set; }
+    double FinalX { get; set; }
 
-        double FinalY { get; set; }
+    double FinalY { get; set; }
 
-        double X { get; set; }
+    double X { get; set; }
 
-        double Y { get; set; }
-    }
+    double Y { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace Orc.Plot.Animations
+﻿namespace Orc.Plot.Animations;
+
+public interface IEasingFunction
 {
-    public interface IEasingFunction
-    {
-        double Ease(double value);
-    }
+    double Ease(double value);
 }

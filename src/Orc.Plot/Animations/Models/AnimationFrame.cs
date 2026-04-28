@@ -1,20 +1,19 @@
-﻿namespace Orc.Plot.Animations
+﻿namespace Orc.Plot.Animations;
+
+using System;
+using System.Collections.Generic;
+
+public class AnimationFrame
 {
-    using System;
-    using System.Collections.Generic;
+    private static readonly TimeSpan DefaultDuration = TimeSpan.FromMilliseconds(15);
 
-    public class AnimationFrame
+    public AnimationFrame()
     {
-        private static readonly TimeSpan DefaultDuration = TimeSpan.FromMilliseconds(15);
-
-        public AnimationFrame()
-        {
-            AnimationPoints = new List<AnimationPoint>();
-            Duration = DefaultDuration;
-        }
-
-        public TimeSpan Duration { get; set; }
-
-        public List<AnimationPoint> AnimationPoints { get; private set; }
+        AnimationPoints = new List<AnimationPoint>();
+        Duration = DefaultDuration;
     }
+
+    public TimeSpan Duration { get; set; }
+
+    public List<AnimationPoint> AnimationPoints { get; private set; }
 }

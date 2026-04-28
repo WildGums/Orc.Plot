@@ -1,12 +1,7 @@
-﻿namespace Orc.Plot.Example.Views
-{
-    using Catel.Windows;
+﻿namespace Orc.Plot.Example.Views;
 
-    public partial class MainWindow : DataWindow
-    { public MainWindow()
-            : base(DataWindowMode.Custom)
-        {
-            InitializeComponent();
-        }
-    }
+using Catel.Windows;
+
+public partial class MainWindow
+{ 
 }
