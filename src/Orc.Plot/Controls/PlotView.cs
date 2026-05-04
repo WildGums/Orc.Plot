@@ -217,7 +217,7 @@ public class PlotView : OxyPlot.Wpf.PlotView
 
                     if (double.IsNaN(minimum))
                     {
-                        Logger.LogDebug($"Can't update minimum, no value available (yet)");
+                        Logger.LogDebug("Can't update minimum, no value available (yet)");
                         return false;
                     }
 
@@ -233,7 +233,7 @@ public class PlotView : OxyPlot.Wpf.PlotView
 
                     if (double.IsNaN(maximum))
                     {
-                        Logger.LogDebug($"Can't update maximum, no value available (yet)");
+                        Logger.LogDebug("Can't update maximum, no value available (yet)");
                         return false;
                     }
 
