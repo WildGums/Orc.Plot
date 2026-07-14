@@ -23,7 +23,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Obsolete.Fody" Version="5.3.1" PrivateAssets="all" />
-    <PackageReference Include="Orc.Controls" Version="6.0.0-alpha0265" />
+    <PackageReference Include="Orc.Controls" Version="6.0.0-alpha0306" />
     <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
   </ItemGroup>
   
